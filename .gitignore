@@ -57,3 +57,6 @@ Podfile.lock
 
 Confidential/
 Confidential.h
+
+
+/devtests/
