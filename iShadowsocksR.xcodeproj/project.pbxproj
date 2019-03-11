@@ -17,6 +17,7 @@
 		1EF602951F113A660005E0C7 /* GeoLite2-Country.mmdb in Resources */ = {isa = PBXBuildFile; fileRef = 1EF602941F113A660005E0C7 /* GeoLite2-Country.mmdb */; };
 		2F5EE57E0687D8533454D2DF /* Pods_iShadowsocksR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87762605D2086ABC8A92E142 /* Pods_iShadowsocksR.framework */; };
 		3880684779850530AFBD4C88 /* Pods_PacketTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A478ADBAAA1661B3FB51E4D3 /* Pods_PacketTunnel.framework */; };
+		39927134223641C400F4EAA2 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8AC8C320753B29002843E0 /* CocoaAsyncSocket.framework */; };
 		3A104BCE2073C55D00C848D5 /* libsodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A104BB92073C4AB00C848D5 /* libsodium.framework */; };
 		3A104BCF2073C55D00C848D5 /* libuv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A104BC22073C4CD00C848D5 /* libuv.framework */; };
 		3A104BD02073C55D00C848D5 /* mbedtls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A104BCB2073C4DF00C848D5 /* mbedtls.framework */; };
@@ -1253,6 +1254,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39927134223641C400F4EAA2 /* CocoaAsyncSocket.framework in Frameworks */,
 				3A14EE9621B44FC1006291BC /* MMWormhole.framework in Frameworks */,
 				B88559F01D21371A00B1243E /* PotatsoModel.framework in Frameworks */,
 				1EEBB8781FFFD52700EB33C3 /* NetworkExtension.framework in Frameworks */,
@@ -3784,7 +3786,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @rpath/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Library/openssl/lib";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.issr;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.alexjinchina.issr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3825,7 +3827,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/iShadowsocksR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @rpath/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Library/openssl/lib";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.issr;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.alexjinchina.issr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3852,7 +3854,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.issr.todaywidget;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.alexjinchina.issr.todaywidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3876,7 +3878,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.issr.todaywidget;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.alexjinchina.issr.todaywidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3923,7 +3925,7 @@
 					"$(PROJECT_DIR)/PacketTunnel/Shadowsocks/libsodium-ios/lib",
 					"$(PROJECT_DIR)/PacketTunnel",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.issr.tunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.alexjinchina.issr.tunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3968,7 +3970,7 @@
 					"$(PROJECT_DIR)/PacketTunnel/Shadowsocks/libsodium-ios/lib",
 					"$(PROJECT_DIR)/PacketTunnel",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.issr.tunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.alexjinchina.issr.tunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4002,10 +4004,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.issr.PotatsoLibrary;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.alexjinchina.issr.PotatsoLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -4039,10 +4042,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssrlive.issr.PotatsoLibrary;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.alexjinchina.issr.PotatsoLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4071,7 +4075,7 @@
 				INFOPLIST_FILE = PotatsoBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ssrlive.issr.$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alexjinchina.issr.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -4103,7 +4107,7 @@
 				INFOPLIST_FILE = PotatsoBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ssrlive.issr.$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alexjinchina.issr.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -4136,7 +4140,7 @@
 				INFOPLIST_FILE = PotatsoModel/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ssrlive.issr.$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alexjinchina.issr.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -4169,7 +4173,7 @@
 				INFOPLIST_FILE = PotatsoModel/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ssrlive.issr.$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alexjinchina.issr.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -4218,7 +4222,7 @@
 				INFOPLIST_FILE = PacketProcessor/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ssrlive.issr.$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alexjinchina.issr.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -4266,7 +4270,7 @@
 				INFOPLIST_FILE = PacketProcessor/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ssrlive.issr.$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alexjinchina.issr.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
