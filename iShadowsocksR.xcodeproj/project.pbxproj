@@ -19,6 +19,7 @@
 		3880684779850530AFBD4C88 /* Pods_PacketTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A478ADBAAA1661B3FB51E4D3 /* Pods_PacketTunnel.framework */; };
 		39927134223641C400F4EAA2 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8AC8C320753B29002843E0 /* CocoaAsyncSocket.framework */; };
 		39E26DC6223671A2002B725B /* Subscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E26DC5223671A2002B725B /* Subscribe.swift */; };
+		39E26EAD223689F0002B725B /* SubscribeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E26EAC223689F0002B725B /* SubscribeManager.swift */; };
 		3A104BCE2073C55D00C848D5 /* libsodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A104BB92073C4AB00C848D5 /* libsodium.framework */; };
 		3A104BCF2073C55D00C848D5 /* libuv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A104BC22073C4CD00C848D5 /* libuv.framework */; };
 		3A104BD02073C55D00C848D5 /* mbedtls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A104BCB2073C4DF00C848D5 /* mbedtls.framework */; };
@@ -637,6 +638,7 @@
 		399271A722365B8A00F4EAA2 /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
 		399271A822365B9400F4EAA2 /* TodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodayWidget.entitlements; sourceTree = "<group>"; };
 		39E26DC5223671A2002B725B /* Subscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscribe.swift; sourceTree = "<group>"; };
+		39E26EAC223689F0002B725B /* SubscribeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeManager.swift; sourceTree = "<group>"; };
 		3A104BB32073C4AB00C848D5 /* libsodium.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libsodium.xcodeproj; path = Library/ssrNative/depends/libsodium/ios/libsodium.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3A104BBC2073C4CD00C848D5 /* libuv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libuv.xcodeproj; path = Library/ssrNative/depends/libuv/ios/libuv.xcodeproj; sourceTree = SOURCE_ROOT; };
 		3A104BC52073C4DF00C848D5 /* mbedtls.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mbedtls.xcodeproj; path = Library/ssrNative/depends/mbedtls/ios/mbedtls.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -1343,6 +1345,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		39E26E9A223689C8002B725B /* Subscribe */ = {
+			isa = PBXGroup;
+			children = (
+				39E26EAC223689F0002B725B /* SubscribeManager.swift */,
+			);
+			path = Subscribe;
+			sourceTree = "<group>";
+		};
 		3A104BB42073C4AB00C848D5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1440,21 +1450,21 @@
 		9B0CFA021C1C0B1A007BD7C6 = {
 			isa = PBXGroup;
 			children = (
-				3A739BCD20763B530069F21C /* libmaxminddb.framework */,
-				3A262D46207A850200073C87 /* CallbackURLKit.xcodeproj */,
-				3A8780A6207549F800B96BF3 /* KissXML.xcodeproj */,
-				3A8AC90720754396002843E0 /* MMWormhole.xcodeproj */,
-				3A8AC8BC20753B29002843E0 /* CocoaAsyncSocket.xcodeproj */,
 				9B0CFA0D1C1C0B1B007BD7C6 /* iShadowsocksR */,
-				9B8705FB1C1D788F00651424 /* PacketTunnel */,
 				9B8193B51CBCFEE700BE320D /* TodayWidget */,
-				9B9B15BE1C21595B000B6541 /* PotatsoLibrary */,
-				9BDA625C1CAE2576007F2581 /* PacketProcessor */,
-				9BC6FFEB1CB28B4B00E5EA61 /* PotatsoModel */,
-				9BC6001E1CB2921C00E5EA61 /* PotatsoBase */,
-				9B0CFA0C1C1C0B1B007BD7C6 /* Products */,
+				9B8705FB1C1D788F00651424 /* PacketTunnel */,
+				3A262D46207A850200073C87 /* CallbackURLKit.xcodeproj */,
+				3A8AC8BC20753B29002843E0 /* CocoaAsyncSocket.xcodeproj */,
 				C8B2149E8757C44C469576D2 /* Frameworks */,
+				3A8780A6207549F800B96BF3 /* KissXML.xcodeproj */,
+				3A739BCD20763B530069F21C /* libmaxminddb.framework */,
+				3A8AC90720754396002843E0 /* MMWormhole.xcodeproj */,
+				9BDA625C1CAE2576007F2581 /* PacketProcessor */,
 				360FC4CAA2A2878A46E847E5 /* Pods */,
+				9BC6001E1CB2921C00E5EA61 /* PotatsoBase */,
+				9B9B15BE1C21595B000B6541 /* PotatsoLibrary */,
+				9BC6FFEB1CB28B4B00E5EA61 /* PotatsoModel */,
+				9B0CFA0C1C1C0B1B007BD7C6 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1475,34 +1485,35 @@
 		9B0CFA0D1C1C0B1B007BD7C6 /* iShadowsocksR */ = {
 			isa = PBXGroup;
 			children = (
-				399271A622365B7E00F4EAA2 /* iShadowsocksR.entitlements */,
-				3A104BE12073DE9900C848D5 /* libcrypto.a */,
-				3A6DD4F2207366BF00BDF530 /* YAML.xcodeproj */,
-				3A57D25920728FFE000520F8 /* Eureka.xcodeproj */,
-				1EF602941F113A660005E0C7 /* GeoLite2-Country.mmdb */,
-				9BC8589F1C33B00200992032 /* Potatso-Bridge-Header.h */,
 				9B0CFA0E1C1C0B1B007BD7C6 /* AppDelegate.swift */,
 				9B1F745F1C2F84250028C1A6 /* AppInitializer.swift */,
-				B87A72B31D433ACA006C2A1B /* NotificationHandler.swift */,
+				9B0CFA151C1C0B1B007BD7C6 /* Assets.xcassets */,
+				9BC858571C32B4AB00992032 /* Base */,
+				B8CF2F991D3DF69E009C9FF3 /* Confidential.h */,
+				9B1F745D1C2F83AD0028C1A6 /* config.plist */,
+				9BC858581C32CEFB00992032 /* Core */,
+				9BB3F74D1CC6303700C2DD05 /* Dashboard */,
 				9B2290FE1C8E5B9600EEC901 /* DataInitializer.swift */,
-				9B8193EC1CBE4DCA00BE320D /* UrlHandler.swift */,
+				9B3247841CC0D00D00A3BAFF /* Edit */,
+				3A57D25920728FFE000520F8 /* Eureka.xcodeproj */,
+				1EF602941F113A660005E0C7 /* GeoLite2-Country.mmdb */,
+				9B5C00221CBFB315008DDE7A /* Home */,
+				9B0CFA1A1C1C0B1B007BD7C6 /* Info.plist */,
+				399271A622365B7E00F4EAA2 /* iShadowsocksR.entitlements */,
+				9B0CFA171C1C0B1B007BD7C6 /* LaunchScreen.storyboard */,
+				3A104BE12073DE9900C848D5 /* libcrypto.a */,
+				B8319A0F1D1BD696001E50C2 /* Localizable.strings */,
+				9B9073491CC1D7EB00A3185A /* Manage */,
+				B87A72B31D433ACA006C2A1B /* NotificationHandler.swift */,
+				9BC8589F1C33B00200992032 /* Potatso-Bridge-Header.h */,
+				9B3247831CC0C9D600A3BAFF /* Settings */,
+				39E26E9A223689C8002B725B /* Subscribe */,
+				B8D8CC0F1D50D5B700CE6C0D /* Sync */,
 				9B1F74611C2F85540028C1A6 /* UIManager.swift */,
 				9B54CC431C1C266C00DDEEBB /* UIViewControllerExtensions.swift */,
-				9B5C00221CBFB315008DDE7A /* Home */,
-				9BB3F74D1CC6303700C2DD05 /* Dashboard */,
-				9B9073491CC1D7EB00A3185A /* Manage */,
-				9B3247831CC0C9D600A3BAFF /* Settings */,
-				9B3247841CC0D00D00A3BAFF /* Edit */,
-				9BC858581C32CEFB00992032 /* Core */,
-				9BC858571C32B4AB00992032 /* Base */,
+				9B8193EC1CBE4DCA00BE320D /* UrlHandler.swift */,
 				9B17F8EC1C53392D00679FCB /* Utils */,
-				B8D8CC0F1D50D5B700CE6C0D /* Sync */,
-				9B1F745D1C2F83AD0028C1A6 /* config.plist */,
-				B8CF2F991D3DF69E009C9FF3 /* Confidential.h */,
-				9B0CFA151C1C0B1B007BD7C6 /* Assets.xcassets */,
-				9B0CFA171C1C0B1B007BD7C6 /* LaunchScreen.storyboard */,
-				9B0CFA1A1C1C0B1B007BD7C6 /* Info.plist */,
-				B8319A0F1D1BD696001E50C2 /* Localizable.strings */,
+				3A6DD4F2207366BF00BDF530 /* YAML.xcodeproj */,
 			);
 			path = iShadowsocksR;
 			sourceTree = "<group>";
@@ -2688,6 +2699,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.DataProtection = {
+								enabled = 0;
+							};
 							com.apple.GameCenter = {
 								enabled = 1;
 							};
@@ -3342,6 +3356,7 @@
 				39E26DC6223671A2002B725B /* Subscribe.swift in Sources */,
 				B84551421CF878BD005779CD /* ConfigGroupChooseVC.swift in Sources */,
 				B88096B01D0579F5008BEB87 /* CloudDetailViewController.swift in Sources */,
+				39E26EAD223689F0002B725B /* SubscribeManager.swift in Sources */,
 				B8319A0A1D1B975C001E50C2 /* RegexUtils.swift in Sources */,
 				B84551401CF83D07005779CD /* HomeVC.swift in Sources */,
 				B8D8CC131D50D5DB00CE6C0D /* ICloudSyncService.swift in Sources */,

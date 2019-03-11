@@ -32,61 +32,64 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
         super.viewDidLoad()
         navigationItem.title = "More".localized()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: SubscribeManager.subscriptionSettingsUpdatedNotification), object: nil, queue: OperationQueue.main) { [weak self] (noti) in
+            self?.generateForm()
+        }
         generateForm()
     }
-
+    
     func generateForm() {
         form.delegate = nil
         form.removeAll()
-//        form +++ generateManualSection()
-        form +++ generateSyncSection()
+        //        form +++ generateManualSection()
+        //        form +++ generateSyncSection()
         form +++ generateSubscribeSection()
-//        form +++ generateRateSection()
+        //        form +++ generateRateSection()
         form +++ generateAboutSection()
         form.delegate = self
         tableView?.reloadData()
     }
-
-//    func generateManualSection() -> Section {
-//        let section = Section()
-//        section
-//            <<< ActionRow {
-//                $0.title = "User Manual".localized()
-//            }.onCellSelection({ [unowned self] (cell, row) in
-//                self.showUserManual()
-//            })
-////            <<< ActionRow {
-////                $0.title = "Feedback".localized()
-////            }.onCellSelection({ (cell, row) in
-////                FeedbackManager.shared.showFeedback()
-////            })
-//        return section
-//    }
-
+    
+    //    func generateManualSection() -> Section {
+    //        let section = Section()
+    //        section
+    //            <<< ActionRow {
+    //                $0.title = "User Manual".localized()
+    //            }.onCellSelection({ [unowned self] (cell, row) in
+    //                self.showUserManual()
+    //            })
+    ////            <<< ActionRow {
+    ////                $0.title = "Feedback".localized()
+    ////            }.onCellSelection({ (cell, row) in
+    ////                FeedbackManager.shared.showFeedback()
+    ////            })
+    //        return section
+    //    }
+    
     func generateSyncSection() -> Section {
         let section = Section()
         section
             <<< ActionRow() {
                 $0.title = "Sync".localized()
                 $0.value = SyncManager.shared.currentSyncServiceType.rawValue
-            }.onCellSelection({ [unowned self] (cell, row) -> () in
-                SyncManager.shared.showSyncVC(inVC: self)
-            })
+                }.onCellSelection({ [unowned self] (cell, row) -> () in
+                    SyncManager.shared.showSyncVC(inVC: self)
+                })
             <<< ActionRow() {
                 $0.title = "Import From URL".localized()
-            }.onCellSelection({ [unowned self] (cell, row) -> () in
-                let importer = Importer(vc: self)
-                importer.importConfigFromUrl()
-            })
+                }.onCellSelection({ [unowned self] (cell, row) -> () in
+                    let importer = Importer(vc: self)
+                    importer.importConfigFromUrl()
+                })
             <<< ActionRow() {
                 $0.title = "Import From QRCode".localized()
-            }.onCellSelection({ [unowned self] (cell, row) -> () in
-                let importer = Importer(vc: self)
-                importer.importConfigFromQRCode()
-            })
+                }.onCellSelection({ [unowned self] (cell, row) -> () in
+                    let importer = Importer(vc: self)
+                    importer.importConfigFromQRCode()
+                })
         return section
     }
     
@@ -95,84 +98,66 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
         section
             <<< ActionRow() {
                 $0.title = "Subscribe".localized()
-//                $0.value = SyncManager.shared.currentSyncServiceType.rawValue
+                //                $0.value = SyncManager.shared.currentSyncServiceType.rawValue
                 }.onCellSelection({ [unowned self] (cell, row) -> () in
-//                    SyncManager.shared.showSyncVC(inVC: self)
+                    SubscribeManager.shared.update()
+                    
+                    self.showProgreeHUD("Updating proxies...".localized())
+//                    Async.background(after: 1) {
+//                        SubscribeManager.shared.update()
+////                        self.
+////                        let config = Config()
+////                        do {
+////                            if isURL {
+////                                if let url = URL(string: source) {
+////                                    try config.setup(url: url)
+////                                }
+////                            }else {
+////                                try config.setup(string: source)
+////                            }
+////                            try config.save()
+////                            self.onConfigSaveCallback(true, error: nil)
+////                        }catch {
+////                            self.onConfigSaveCallback(false, error: error)
+////                        }
+//                    }
+                    self.hideHUD()
                 })
+            <<< ActionRow() {
+                $0.title = "URL".localized()
+                $0.value = SubscribeManager.shared.subscribeUrl
+                }.onCellSelection({ [unowned self] (cell, row) -> () in
+                    
+                    var urlTextField: UITextField?
+                    let alert = UIAlertController(title: "Set Proxy subscribe URL".localized(), message: nil, preferredStyle: .alert)
+                    alert.addTextField { (textField) in
+                        textField.placeholder = "Input URL".localized()
+                        urlTextField = textField
+                    }
+                    alert.addAction(UIAlertAction(title: "OK".localized(), style: .default, handler: { (action) in
+                        if let input = urlTextField?.text {
+                            SubscribeManager.shared.subscribeUrl = input
+                        }
+                    }))
+                    alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    
+                })
+        
         return section
     }
     
-//    func generateRateSection() -> Section {
-//        let section = Section()
-//        section
-//            <<< ActionRow() {
-//                $0.title = "Rate on App Store".localized()
-//            }.onCellSelection({ (cell, row) -> () in
-//                Appirater.rateApp()
-//            })
-//            <<< ActionRow() {
-//                $0.title = "Share with friends".localized()
-//            }.onCellSelection({ [unowned self] (cell, row) -> () in
-//                self.shareWithFriends()
-//            })
-//        return section
-//    }
-
     func generateAboutSection() -> Section {
         let section = Section()
         section
-//            <<< ActionRow() {
-//                $0.title = "Follow on Twitter".localized()
-//                $0.value = "@PotatsoApp"
-//            }.onCellSelection({ [unowned self] (cell, row) -> () in
-//                self.followTwitter()
-//            })
-//            <<< ActionRow() {
-//                $0.title = "Follow on Weibo".localized()
-//                $0.value = "@Potatso"
-//            }.onCellSelection({ [unowned self] (cell, row) -> () in
-//                self.followWeibo()
-//            })
-//            <<< ActionRow() {
-//                $0.title = "Join Telegram Group".localized()
-//                $0.value = "@Potatso"
-//            }.onCellSelection({ [unowned self] (cell, row) -> () in
-//                self.joinTelegramGroup()
-//            })
             <<< LabelRow() {
                 $0.title = "Version".localized()
                 $0.value = AppEnv.fullVersion
-            }
+        }
         return section
     }
-
-//    func showUserManual() {
-//        let url = "https://manual.potatso.com/"
-//        let vc = BaseSafariViewController(url: URL(string: url)!, entersReaderIfAvailable: false)
-//        vc.delegate = self
-//        present(vc, animated: true, completion: nil)
-//    }
-
-//    func followTwitter() {
-//        UIApplication.shared.openURL(URL(string: "https://twitter.com/intent/user?screen_name=potatsoapp")!)
-//    }
-//
-//    func followWeibo() {
-//        UIApplication.shared.openURL(URL(string: "http://weibo.com/potatso")!)
-//    }
-
-//    func joinTelegramGroup() {
-//        UIApplication.shared.openURL(URL(string: "https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ")!)
-//    }
-//
-//    func shareWithFriends() {
-//        var shareItems: [AnyObject] = []
-//        shareItems.append("Potatso [https://itunes.apple.com/us/app/id1070901416]" as AnyObject)
-//        shareItems.append(UIImage(named: "AppIcon60x60")!)
-//        let shareVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
-//        self.present(shareVC, animated: true, completion: nil)
-//    }
-
+    
+    
     @objc func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
