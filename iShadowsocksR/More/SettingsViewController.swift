@@ -100,28 +100,14 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
                 $0.title = "Subscribe".localized()
                 //                $0.value = SyncManager.shared.currentSyncServiceType.rawValue
                 }.onCellSelection({ [unowned self] (cell, row) -> () in
-                    SubscribeManager.shared.update()
-                    
                     self.showProgreeHUD("Updating proxies...".localized())
-//                    Async.background(after: 1) {
-//                        SubscribeManager.shared.update()
-////                        self.
-////                        let config = Config()
-////                        do {
-////                            if isURL {
-////                                if let url = URL(string: source) {
-////                                    try config.setup(url: url)
-////                                }
-////                            }else {
-////                                try config.setup(string: source)
-////                            }
-////                            try config.save()
-////                            self.onConfigSaveCallback(true, error: nil)
-////                        }catch {
-////                            self.onConfigSaveCallback(false, error: error)
-////                        }
-//                    }
-                    self.hideHUD()
+                    SubscribeManager.shared.update(completionHandler: { (error) in
+                        if let error = error {
+                            self.showTextHUD(error.localized(), dismissAfterDelay: 3)
+                        }else{
+                            self.hideHUD(1)
+                        }
+                    })
                 })
             <<< ActionRow() {
                 $0.title = "URL".localized()

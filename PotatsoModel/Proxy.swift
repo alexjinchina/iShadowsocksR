@@ -67,6 +67,7 @@ extension ProxyError: CustomStringConvertible {
 open class Proxy: BaseModel {
     @objc open dynamic var typeRaw = ProxyType.Shadowsocks.rawValue
     @objc open dynamic var name = ""
+    @objc open dynamic var group = ""
     @objc open dynamic var host = ""
     @objc open dynamic var port = 0
     @objc open dynamic var authscheme: String?  // method in SS
@@ -262,11 +263,14 @@ extension Proxy {
                     guard comps.count == 2 else {
                         continue
                     }
+                    let decodedComp = base64DecodeIfNeeded(comps[1]) ?? comps[1]
                     switch comps[0] {
                     case "obfsparam":
                         self.ssrObfsParam = comps[1]
                     case "remarks":
-                        self.name = comps[1]
+                        self.name = decodedComp
+                    case "group":
+                        self.group = decodedComp
                     default:
                         continue
                     }
@@ -301,6 +305,9 @@ extension Proxy {
             self.authscheme = encryption
             self.name = name
             self.type = type
+            if let group = dictionary["group"] as? String{
+                self.group = group
+            }
         }
         if realm.objects(Proxy.self).filter("name = '\(name)'").first != nil {
             self.name = "\(name) \(Proxy.dateFormatter.string(from: Date()))"

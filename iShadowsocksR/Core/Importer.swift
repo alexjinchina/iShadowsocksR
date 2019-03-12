@@ -81,9 +81,9 @@ struct Importer {
                 }catch {
                     self.onConfigSaveCallback(false, error: error)
                 }
-                })
+            })
             alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel) { action in
-                })
+            })
             viewController?.present(alert, animated: true, completion: nil)
         }catch {
             self.onConfigSaveCallback(false, error: error)
@@ -129,5 +129,5 @@ struct Importer {
             }
         }
     }
-
+    
 }
