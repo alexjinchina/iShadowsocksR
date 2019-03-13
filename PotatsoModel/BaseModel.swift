@@ -9,7 +9,7 @@ import RealmSwift
 import PotatsoBase
 import CloudKit
 
-private let version: UInt64 = 18
+private let version: UInt64 = 19
 public var defaultRealm: Realm!
 
 public func setupDefaultReaml() {
@@ -25,8 +25,10 @@ public func setupDefaultReaml() {
     config.migrationBlock = { migration, oldSchemaVersion in
         if oldSchemaVersion < 18 {
             // Migrating old rules list to json
-            migrateRulesList(migration, oldSchemaVersion: oldSchemaVersion)
+            migrateRulesList18(migration, oldSchemaVersion: oldSchemaVersion)
         }
+        
+        migrate(migration,oldSchemaVersion: oldSchemaVersion)
     }
     Realm.Configuration.defaultConfiguration = config
     defaultRealm = try! Realm()
@@ -39,7 +41,7 @@ open class BaseModel: Object {
     @objc open dynamic var updatedAt = Date().timeIntervalSince1970
     @objc open dynamic var deleted = false
     @objc open dynamic var synced = false
-
+    
     override open class func primaryKey() -> String? {
         return "uuid"
     }
@@ -49,15 +51,15 @@ open class BaseModel: Object {
         f.dateFormat = "MM-dd HH:mm:ss"
         return f
     }
-
+    
     open func validate(inRealm realm: Realm) throws {
         //
     }
-
+    
 }
 
 // MARK: - Migration
-func migrateRulesList(_ migration: Migration, oldSchemaVersion: UInt64) {
+func migrateRulesList18(_ migration: Migration, oldSchemaVersion: UInt64) {
     migration.enumerateObjects(ofType: ProxyRuleSet.className(), { (oldObject, newObject) in
         if oldSchemaVersion > 11 {
             guard let deleted = oldObject!["deleted"] as? Bool, !deleted else {
@@ -87,4 +89,27 @@ func migrateRulesList(_ migration: Migration, oldSchemaVersion: UInt64) {
         }
         newObject!["synced"] = false
     })
+}
+
+fileprivate let migrateFuncs: [String:(MigrationObject,MigrationObject,UInt64)->Void] = [
+    Proxy.className():{
+        (oldObject, newObject, oldSchemaVersion) in
+        if (oldSchemaVersion < 19){
+            newObject["group"] = ""
+        }
+        
+
+    }
+]
+
+
+
+
+
+func migrate(_ migration: Migration, oldSchemaVersion: UInt64) {
+    for (className, migrateFunc) in migrateFuncs {
+        migration.enumerateObjects(ofType: className) { (o, n) in
+            migrateFunc(o!,n!,oldSchemaVersion)
+        }
+    }
 }
